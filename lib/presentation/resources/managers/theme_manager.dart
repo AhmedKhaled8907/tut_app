@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tut_app/presentation/managers/color_manager.dart';
-import 'package:tut_app/presentation/managers/font_manager.dart';
-import 'package:tut_app/presentation/managers/styles_manager.dart';
-import 'package:tut_app/presentation/managers/values_manager.dart';
+import 'package:tut_app/presentation/resources/managers/color_manager.dart';
+import 'package:tut_app/presentation/resources/managers/font_manager.dart';
+import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
+import 'package:tut_app/presentation/resources/managers/values_manager.dart';
 
 ThemeData getAppTheme() {
   return ThemeData(
@@ -13,7 +13,7 @@ ThemeData getAppTheme() {
     disabledColor: ColorManager.grey1,
     splashColor: ColorManager.lightPrimary, // ripple effect color
 
-    // card View theme
+    // card view theme
     cardTheme: CardTheme(
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
@@ -82,20 +82,26 @@ ThemeData getAppTheme() {
       contentPadding: const EdgeInsets.all(AppPadding.p8),
 
       // hint style
-      hintStyle:
-          getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s14),
+      hintStyle: getRegularStyle(
+        color: ColorManager.grey,
+        fontSize: FontSize.s14,
+      ),
 
       // label style
-      labelStyle:
-          getMediumStyle(color: ColorManager.grey, fontSize: FontSize.s14),
+      labelStyle: getMediumStyle(
+        color: ColorManager.grey,
+        fontSize: FontSize.s14,
+      ),
 
       // error style
       errorStyle: getRegularStyle(color: ColorManager.error),
 
       // enabled border style
       enabledBorder: OutlineInputBorder(
-        borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
@@ -103,7 +109,10 @@ ThemeData getAppTheme() {
 
       // focused border style
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.grey, width: AppSize.s1_5),
+        borderSide: BorderSide(
+          color: ColorManager.grey,
+          width: AppSize.s1_5,
+        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
@@ -111,7 +120,10 @@ ThemeData getAppTheme() {
 
       // error border style
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.error, width: AppSize.s1_5),
+        borderSide: BorderSide(
+          color: ColorManager.error,
+          width: AppSize.s1_5,
+        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
@@ -119,8 +131,10 @@ ThemeData getAppTheme() {
 
       // focused border style
       focusedErrorBorder: OutlineInputBorder(
-        borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
