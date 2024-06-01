@@ -34,7 +34,6 @@ TextStyle getMediumStyle({
   );
 }
 
-
 // Semi-Bold textStyle
 TextStyle getSemiBoldStyle({
   double fontSize = FontSize.s12,
