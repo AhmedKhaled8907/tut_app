@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tut_app/presentation/resources/managers/string_manager.dart';
 
 class UnDefinedRouteView extends StatelessWidget {
   const UnDefinedRouteView({super.key});
@@ -8,12 +9,12 @@ class UnDefinedRouteView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "No Route Found",
+          StringManager.noRouteFound,
         ),
       ),
       body: const Center(
         child: Text(
-          "No Route Found",
+          StringManager.noRouteFound,
         ),
       ),
     );
