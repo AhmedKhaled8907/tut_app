@@ -10,6 +10,18 @@ TextStyle _getTextStyle(FontWeight fontWeight, double fontSize, Color color) {
   );
 }
 
+// light textStyle
+TextStyle getLightStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+}) {
+  return _getTextStyle(
+    FontWeightManager.light,
+    fontSize,
+    color,
+  );
+}
+
 // regular textStyle
 TextStyle getRegularStyle({
   double fontSize = FontSize.s12,
