@@ -4,7 +4,7 @@ import 'package:tut_app/presentation/resources/managers/font_manager.dart';
 import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
 import 'package:tut_app/presentation/resources/managers/values_manager.dart';
 
-ThemeData getAppTheme() {
+ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,

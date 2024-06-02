@@ -52,7 +52,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tut_app/presentation/resources/managers/constants_manager.dart';
-import 'package:tut_app/presentation/resources/managers/images_manager.dart';
+import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
 import 'package:tut_app/presentation/resources/managers/router_manager.dart';
 
@@ -68,7 +68,7 @@ class SplashViewState extends State<SplashView> {
 
   void _startDelay() {
     _timer = Timer(
-      const Duration(seconds: ConstantsManager.splashDelay),
+      const Duration(seconds: AppConstants.splashDelay),
       _goNext,
     );
   }
@@ -95,7 +95,7 @@ class SplashViewState extends State<SplashView> {
       backgroundColor: ColorManager.primary,
       body: Center(
         child: Image.asset(
-          ImagesManager.splashLogo,
+          ImageAssets.splashLogo,
         ),
       ),
     );

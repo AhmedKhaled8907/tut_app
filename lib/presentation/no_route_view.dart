@@ -9,12 +9,12 @@ class NoRouteView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          StringManager.noRouteFound,
+          AppStrings.noRouteFound,
         ),
       ),
       body: const Center(
         child: Text(
-          StringManager.noRouteFound,
+          AppStrings.noRouteFound,
         ),
       ),
     );
