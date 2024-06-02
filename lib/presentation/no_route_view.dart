@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tut_app/presentation/resources/managers/string_manager.dart';
 
-class UnDefinedRouteView extends StatelessWidget {
-  const UnDefinedRouteView({super.key});
+class NoRouteView extends StatelessWidget {
+  const NoRouteView({super.key});
 
   @override
   Widget build(BuildContext context) {

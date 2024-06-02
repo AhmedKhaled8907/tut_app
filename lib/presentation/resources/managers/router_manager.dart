@@ -5,7 +5,7 @@ import 'package:tut_app/presentation/main/main_view.dart';
 import 'package:tut_app/presentation/register/register_view.dart';
 import 'package:tut_app/presentation/splash/splash_view.dart';
 import 'package:tut_app/presentation/store_details/store_details_view.dart';
-import 'package:tut_app/presentation/un_defined_route_view.dart';
+import 'package:tut_app/presentation/no_route_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -32,14 +32,13 @@ class RouteGenerator {
       case Routes.storeDetailsRoute:
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
       default:
-        return unDefinedRoute();
+        return NoRoute();
     }
   }
 
-  static Route<dynamic> unDefinedRoute() {
+  static Route<dynamic> NoRoute() {
     return MaterialPageRoute(
-      builder: (_) => const UnDefinedRouteView(),
+      builder: (_) => const NoRouteView(),
     );
   }
 }
-
