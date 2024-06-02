@@ -10,6 +10,11 @@ class OnBoardingView extends StatefulWidget {
 class OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(
+        child: Text("OnBoarding"),
+      ),
+    );
   }
 }
