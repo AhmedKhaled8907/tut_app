@@ -1,8 +1,10 @@
-abstract class BaseViewModel {}
+abstract class BaseViewModel with BaseViewModelInputs, BaseViewModelOutputs {
+  // shared variables and function that will be used through any view model.
+}
 
-abstract class BaseViewModelInputs {
+mixin BaseViewModelInputs {
   void start();
   void dispose();
 }
 
-abstract class BaseViewModelOutputs {}
+mixin BaseViewModelOutputs {}
