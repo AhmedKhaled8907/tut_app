@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
-import 'package:tut_app/presentation/resources/managers/font_manager.dart';
 import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
 import 'package:tut_app/presentation/resources/managers/string_manager.dart';
-import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
 import 'package:tut_app/presentation/resources/managers/values_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -49,7 +47,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
           setState(() {});
         },
         itemBuilder: (context, index) {
-          return Container();
+          return OnboardingPage(sliderObject: _list[index]);
 
           //  Padding(
           //   padding: const EdgeInsets.symmetric(
@@ -107,6 +105,24 @@ class OnBoardingViewState extends State<OnBoardingView> {
           // );
         },
       ),
+      bottomSheet: Container(
+        color: ColorManager.white,
+        height: AppSize.s100,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  AppStrings.skip,
+                  textAlign: TextAlign.end,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -147,6 +163,7 @@ class OnboardingPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSize.s60),
+        SvgPicture.asset(sliderObject.image),
       ],
     );
   }
