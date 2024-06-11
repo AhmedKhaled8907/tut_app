@@ -4,9 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
 import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
 import 'package:tut_app/presentation/resources/managers/constants_manager.dart';
-import 'package:tut_app/presentation/resources/managers/font_manager.dart';
 import 'package:tut_app/presentation/resources/managers/string_manager.dart';
-import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
 import 'package:tut_app/presentation/resources/managers/values_manager.dart';
 
 import '../resources/managers/router_manager.dart';
@@ -39,7 +37,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
-        elevation: 0,
+        elevation: AppSize.s0,
         backgroundColor: ColorManager.white,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: ColorManager.white,
@@ -60,8 +58,9 @@ class OnBoardingViewState extends State<OnBoardingView> {
       ),
       bottomSheet: Container(
         color: ColorManager.white,
-        height: AppSize.s100,
+        // height: AppSize.s100,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             // skip button
             Align(
@@ -74,10 +73,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
                 child: Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
-                  style: getMediumStyle(
-                    color: ColorManager.primary,
-                    fontSize: FontSize.s16,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ),
@@ -170,7 +166,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
   }
 
   int _getPreviousIndex() {
-    int previousIndex = currentIndex--;
+    int previousIndex = --currentIndex;
     if (previousIndex == -1) {
       previousIndex = _list.length - 1;
     }
@@ -178,7 +174,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
   }
 
   int _getNextIndex() {
-    int nextIndex = currentIndex++;
+    int nextIndex = ++currentIndex;
     if (nextIndex == _list.length) {
       nextIndex = 0;
     }
