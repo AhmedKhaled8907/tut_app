@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
 import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
+import 'package:tut_app/presentation/resources/managers/constants_manager.dart';
 import 'package:tut_app/presentation/resources/managers/font_manager.dart';
 import 'package:tut_app/presentation/resources/managers/string_manager.dart';
 import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
 import 'package:tut_app/presentation/resources/managers/values_manager.dart';
+
+import '../resources/managers/router_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -47,65 +50,12 @@ class OnBoardingViewState extends State<OnBoardingView> {
         controller: _pageController,
         itemCount: _list.length,
         onPageChanged: (index) {
-          setState(() {});
+          setState(() {
+            currentIndex = index;
+          });
         },
         itemBuilder: (context, index) {
           return OnboardingPage(sliderObject: _list[index]);
-
-          //  Padding(
-          //   padding: const EdgeInsets.symmetric(
-          //     vertical: AppPadding.p16,
-          //     horizontal: AppPadding.p16,
-          //   ),
-          //   child:
-          //   Column(
-          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //     children: [
-          //       Column(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         children: [
-          //           Text(
-          //             _list[index].title,
-          //             style: getSemiBoldStyle(
-          //               color: ColorManager.darkGrey,
-          //               fontSize: AppSize.s20,
-          //             ),
-          //           ),
-          //           const SizedBox(height: AppSize.s8),
-          //           Text(
-          //             _list[index].subTitle,
-          //             style: getRegularStyle(
-          //               color: ColorManager.grey,
-          //               fontSize: AppSize.s14,
-          //             ),
-          //             textAlign: TextAlign.center,
-          //           ),
-          //         ],
-          //       ),
-          //       Padding(
-          //         padding:
-          //             const EdgeInsets.symmetric(horizontal: AppPadding.p16),
-          //         child: SvgPicture.asset(
-          //           _list[index].image,
-          //           fit: BoxFit.fill,
-          //         ),
-          //       ),
-          //       TextButton(
-          //         onPressed: () {},
-          //         child: Align(
-          //           alignment: Alignment.bottomRight,
-          //           child: Text(
-          //             AppStrings.skipText,
-          //             style: getMediumStyle(
-          //               color: ColorManager.primary,
-          //               fontSize: FontSize.s16,
-          //             ),
-          //           ),
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // );
         },
       ),
       bottomSheet: Container(
@@ -117,7 +67,10 @@ class OnBoardingViewState extends State<OnBoardingView> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await Navigator.of(context)
+                      .pushReplacementNamed(Routes.loginRoute);
+                },
                 child: Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
@@ -141,16 +94,23 @@ class OnBoardingViewState extends State<OnBoardingView> {
     return Container(
       color: ColorManager.primary,
       child: Row(
-        // the left arrow
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // the left arrow
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(AppPadding.p16),
-                child: InkWell(
-                  splashColor: ColorManager.darkGrey,
-                  onTap: () {},
+                padding: const EdgeInsets.all(AppPadding.p14),
+                child: GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(
+                      _getPreviousIndex(),
+                      duration: const Duration(
+                        milliseconds: AppConstants.sliderDotsDuration,
+                      ),
+                      curve: Curves.bounceInOut,
+                    );
+                  },
                   child: SizedBox(
                     height: AppSize.s20,
                     width: AppSize.s20,
@@ -177,8 +137,16 @@ class OnBoardingViewState extends State<OnBoardingView> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p16),
-                child: InkWell(
-                  onTap: () {},
+                child: GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(
+                      _getNextIndex(),
+                      duration: const Duration(
+                        milliseconds: AppConstants.sliderDotsDuration,
+                      ),
+                      curve: Curves.bounceIn,
+                    );
+                  },
                   child: SizedBox(
                     height: AppSize.s20,
                     width: AppSize.s20,
@@ -199,6 +167,22 @@ class OnBoardingViewState extends State<OnBoardingView> {
     } else {
       return const InActiveDocIndicator();
     }
+  }
+
+  int _getPreviousIndex() {
+    int previousIndex = currentIndex--;
+    if (previousIndex == -1) {
+      previousIndex = _list.length - 1;
+    }
+    return previousIndex;
+  }
+
+  int _getNextIndex() {
+    int nextIndex = currentIndex++;
+    if (nextIndex == _list.length) {
+      nextIndex = 0;
+    }
+    return nextIndex;
   }
 }
 
