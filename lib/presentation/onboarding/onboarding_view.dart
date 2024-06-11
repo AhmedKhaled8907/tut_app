@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
 import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
+import 'package:tut_app/presentation/resources/managers/font_manager.dart';
 import 'package:tut_app/presentation/resources/managers/string_manager.dart';
+import 'package:tut_app/presentation/resources/managers/styles_manager.dart';
 import 'package:tut_app/presentation/resources/managers/values_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -16,6 +18,7 @@ class OnBoardingView extends StatefulWidget {
 class OnBoardingViewState extends State<OnBoardingView> {
   late final List<SliderObject> _list = _getSliderData();
   final PageController _pageController = PageController();
+  int currentIndex = 0;
 
   List<SliderObject> _getSliderData() => [
         SliderObject(AppStrings.onBoardingTitle1,
@@ -110,18 +113,124 @@ class OnBoardingViewState extends State<OnBoardingView> {
         height: AppSize.s100,
         child: Column(
           children: [
+            // skip button
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
+                  style: getMediumStyle(
+                    color: ColorManager.primary,
+                    fontSize: FontSize.s16,
+                  ),
                 ),
               ),
             ),
+
+            // widgets indicator and arrows
+            _getBottomSheetWidget(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _getBottomSheetWidget() {
+    return Container(
+      color: ColorManager.primary,
+      child: Row(
+        // the left arrow
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                child: InkWell(
+                  splashColor: ColorManager.darkGrey,
+                  onTap: () {},
+                  child: SizedBox(
+                    height: AppSize.s20,
+                    width: AppSize.s20,
+                    child: SvgPicture.asset(ImageAssets.leftArrowIc),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // the dots indicator
+          Row(
+            children: [
+              for (int i = 0; i < _list.length; i++)
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  child: _getProperCircle(i),
+                ),
+            ],
+          ),
+
+          // the right arrow
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                child: InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    height: AppSize.s20,
+                    width: AppSize.s20,
+                    child: SvgPicture.asset(ImageAssets.rightArrowIc),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getProperCircle(int index) {
+    if (index == currentIndex) {
+      return const ActiveDocIndicator();
+    } else {
+      return const InActiveDocIndicator();
+    }
+  }
+}
+
+class InActiveDocIndicator extends StatelessWidget {
+  const InActiveDocIndicator({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppSize.s12,
+      width: AppSize.s12,
+      child: CircleAvatar(
+        backgroundColor: ColorManager.darkGrey,
+      ),
+    );
+  }
+}
+
+class ActiveDocIndicator extends StatelessWidget {
+  const ActiveDocIndicator({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppSize.s12,
+      width: AppSize.s12,
+      child: CircleAvatar(
+        backgroundColor: ColorManager.white,
       ),
     );
   }
