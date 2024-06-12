@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tut_app/presentation/onboarding/viewmodel/onboarding_view_model.dart';
 import 'package:tut_app/presentation/resources/managers/color_manager.dart';
 import 'package:tut_app/presentation/resources/managers/assets_manager.dart';
 import 'package:tut_app/presentation/resources/managers/constants_manager.dart';
@@ -18,16 +19,30 @@ class OnBoardingView extends StatefulWidget {
 
 class OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController();
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
 
-  
+  void _bind() {
+    _viewModel.start();
+  }
 
-  //     @override
-  // void dispose() {
-  //   super.dispose();
-  // }
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return _getContentWidget(context);
+  }
+
+  Widget _getContentWidget(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -158,9 +173,6 @@ class OnBoardingViewState extends State<OnBoardingView> {
       return const InActiveDocIndicator();
     }
   }
-
-
-
 }
 
 class InActiveDocIndicator extends StatelessWidget {
@@ -196,8 +208,6 @@ class ActiveDocIndicator extends StatelessWidget {
     );
   }
 }
-
-
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key, required this.sliderObject});
