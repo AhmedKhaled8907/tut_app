@@ -24,13 +24,28 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  void goNext() {}
+  int goNext() {
+    int nextIndex = ++currentIndex;
+    if (nextIndex == _list.length) {
+      nextIndex = 0;
+    }
+    return nextIndex;
+  }
 
   @override
-  void goPrevious() {}
+  int goPrevious() {
+    int previousIndex = --currentIndex;
+    if (previousIndex == -1) {
+      previousIndex = _list.length - 1;
+    }
+    return previousIndex;
+  }
 
   @override
-  void onPageChanged(int index) {}
+  void onPageChanged(int index) {
+    currentIndex = index;
+    _postDataToView();
+  }
 
   // onboarding View Model inputs
   @override
@@ -77,8 +92,8 @@ class OnBoardingViewModel extends BaseViewModel
 }
 
 mixin OnBoardingViewModelInputs {
-  void goNext();
-  void goPrevious();
+  int goNext();
+  int goPrevious();
   void onPageChanged(int index);
 
   // stream controller input

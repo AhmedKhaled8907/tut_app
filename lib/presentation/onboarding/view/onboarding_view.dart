@@ -159,21 +159,8 @@ class OnBoardingViewState extends State<OnBoardingView> {
     }
   }
 
-  int _getPreviousIndex() {
-    int previousIndex = --currentIndex;
-    if (previousIndex == -1) {
-      previousIndex = _list.length - 1;
-    }
-    return previousIndex;
-  }
 
-  int _getNextIndex() {
-    int nextIndex = ++currentIndex;
-    if (nextIndex == _list.length) {
-      nextIndex = 0;
-    }
-    return nextIndex;
-  }
+
 }
 
 class InActiveDocIndicator extends StatelessWidget {
